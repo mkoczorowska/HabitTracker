@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.SettingsActivity"/>
+        <activity android:name=".activities.StatisticsActivity"/>
+        <activity android:name=".activities.HabitDetailsActivity"/>
+        <activity android:name=".activities.AddHabitActivity"/>
     </application>
 
 </manifest>
