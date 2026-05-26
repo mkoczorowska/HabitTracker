@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="40dp"
+    android:id="@+id/mainRoot"
+    android:background="@color/light_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Habit Tracker"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/light_text_primary"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buduj dobre nawyki każdego dnia"
+        android:textSize="14sp"
+        android:textColor="@color/light_text_secondary"
+        android:layout_marginBottom="60dp"/>
 
     <Button
-        android:id="@+id/addHabitBtn"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dodaj nawyk"/>
+        android:layout_height="52dp"
+        android:text="Zaloguj się"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:background="@drawable/bg_button"
+        android:layout_marginBottom="16dp"
+        android:stateListAnimator="@null"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <Button
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="52dp"
+        android:text="Zarejestruj się"
+        android:textColor="@color/light_text_primary"
+        android:textSize="16sp"
+        android:background="@drawable/bg_button_outline"
+        android:stateListAnimator="@null"/>
+
 </LinearLayout>

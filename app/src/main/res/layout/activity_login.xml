@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center_vertical"
+    android:id="@+id/loginRoot"
+    android:background="@color/light_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Habit Tracker"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/light_text_primary"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się"
+        android:textSize="16sp"
+        android:textColor="@color/light_text_secondary"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="13sp"
+        android:textColor="@color/light_text_secondary"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_input"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="textEmailAddress"
+        android:hint="twoj@email.com"
+        android:textColorHint="#AAAAAA"
+        android:textColor="@color/light_text_primary"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hasło"
+        android:textSize="13sp"
+        android:textColor="@color/light_text_secondary"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_input"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="textPassword"
+        android:hint="••••••••"
+        android:textColorHint="#AAAAAA"
+        android:textColor="@color/light_text_primary"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Zaloguj się"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:background="@drawable/bg_button"
+        android:stateListAnimator="@null"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Wróć"
+        android:textColor="@color/light_text_primary"
+        android:textSize="16sp"
+        android:background="@drawable/bg_button_outline"
+        android:stateListAnimator="@null"/>
+
+</LinearLayout>

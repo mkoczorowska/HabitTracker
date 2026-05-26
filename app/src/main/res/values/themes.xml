@@ -1,9 +1,20 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.HabitTracker" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.HabitTracker" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#3D3D3D</item>
+        <item name="colorPrimaryVariant">#1A1A1A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1A1A1A</item>
+        <item name="android:windowBackground">@color/light_bg</item>
     </style>
 
-    <style name="Theme.HabitTracker" parent="Base.Theme.HabitTracker" />
+    <style name="Theme.HabitTracker.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">#C8C8C8</item>
+        <item name="colorPrimaryVariant">#F0F0F0</item>
+        <item name="colorOnPrimary">#111111</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#F0F0F0</item>
+        <item name="android:windowBackground">@color/dark_bg</item>
+    </style>
 </resources>

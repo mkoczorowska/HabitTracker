@@ -1,3 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HabitTracker</string>
+    <string name="app_name">Habit Tracker</string>
+    <string name="login">Zaloguj się</string>
+    <string name="register">Zarejestruj się</string>
+    <string name="email">Email</string>
+    <string name="password">Hasło</string>
+    <string name="repeat_password">Powtórz hasło</string>
+    <string name="todays_habits">Dzisiejsze nawyki</string>
+    <string name="add_habit">Dodaj nawyk</string>
+    <string name="statistics">Statystyki</string>
+    <string name="settings">Ustawienia</string>
+    <string name="home">Główna</string>
+    <string name="logout">Wyloguj</string>
+    <string name="save">Zapisz</string>
+    <string name="delete_habit">Usuń nawyk</string>
+    <string name="dark_theme">Motyw ciemny</string>
+    <string name="notifications">Włącz powiadomienia</string>
+    <string name="your_longest_habit">Twój najdłuższy nawyk</string>
+    <string name="all_habits">Twoje wszystkie nawyki</string>
 </resources>
