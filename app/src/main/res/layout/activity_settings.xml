@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/settingsRoot"
-    android:background="@color/light_bg">
+    android:background="@color/light_bg"
+    android:tag="root">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Habit Tracker"
+                android:tag="text_title"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 android:textColor="@color/light_text_primary"
@@ -31,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="USTAWIENIA"
+                android:tag="label"
                 android:textSize="11sp"
                 android:textColor="@color/light_text_secondary"
                 android:letterSpacing="0.15"
@@ -43,12 +46,14 @@
                 android:orientation="vertical"
                 android:background="@drawable/bg_card"
                 android:padding="20dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:tag="card">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Konto"
+                    android:tag="label"
                     android:textSize="11sp"
                     android:textColor="@color/light_text_secondary"
                     android:letterSpacing="0.1"
@@ -56,6 +61,7 @@
 
                 <TextView
                     android:id="@+id/tvEmail"
+                    android:tag="text_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -69,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:text="Wyloguj"
+                android:tag="btn_primary"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:background="@drawable/bg_button"
@@ -79,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PERSONALIZACJA"
+                android:tag="label"
                 android:textSize="11sp"
                 android:textColor="@color/light_text_secondary"
                 android:letterSpacing="0.15"
@@ -87,6 +95,7 @@
             <!-- Dark mode card -->
             <LinearLayout
                 android:layout_width="match_parent"
+                android:tag="card"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/bg_card"
@@ -99,6 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Motyw ciemny"
+                    android:tag="text_primary"
                     android:textSize="15sp"
                     android:textColor="@color/light_text_primary"/>
 
@@ -119,7 +129,8 @@
                 android:background="@drawable/bg_card"
                 android:padding="20dp"
                 android:layout_marginBottom="32dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:tag="card">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -131,6 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Włącz powiadomienia"
+                        android:tag="text_primary"
                         android:textSize="15sp"
                         android:textColor="@color/light_text_primary"
                         android:layout_marginBottom="2dp"/>
@@ -139,6 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Codzienny reminder o 8:00"
+                        android:tag="text_secondary"
                         android:textSize="11sp"
                         android:textColor="@color/light_text_secondary"/>
 
@@ -161,6 +174,7 @@
         layout="@layout/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:tag="bottom_nav"/>
 
 </RelativeLayout>

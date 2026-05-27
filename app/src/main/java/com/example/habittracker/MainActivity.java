@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.habittracker.R;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         applyTheme(session.isDarkMode());
         setContentView(R.layout.activity_main);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         findViewById(R.id.btnLogin).setOnClickListener(v ->
                 startActivity(new Intent(this, LoginActivity.class)));

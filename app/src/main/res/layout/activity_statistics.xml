@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/statsRoot"
-    android:background="@color/light_bg">
+    android:background="@color/light_bg"
+    android:tag="root">
 
     <LinearLayout
         android:id="@+id/statsTop"
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Habit Tracker"
+            android:tag="text_title"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/light_text_primary"
@@ -27,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TWÓJ NAJDŁUŻSZY NAWYK"
+            android:tag="label"
             android:textSize="12sp"
             android:textColor="@color/light_text_secondary"
             android:letterSpacing="0.1"
@@ -34,6 +37,7 @@
 
         <LinearLayout
             android:id="@+id/topHabitCard"
+            android:tag="card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -46,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Brak nawyków"
+                android:tag="text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/light_text_primary"
@@ -53,6 +58,7 @@
 
             <TextView
                 android:id="@+id/tvTopHabitStreak"
+                android:tag="text_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
@@ -64,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TWOJE WSZYSTKIE NAWYKI"
+            android:tag="label"
             android:textSize="12sp"
             android:textColor="@color/light_text_secondary"
             android:letterSpacing="0.1"
@@ -94,6 +101,7 @@
         layout="@layout/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:tag="bottom_nav"/>
 
 </RelativeLayout>

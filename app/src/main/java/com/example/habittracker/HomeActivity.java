@@ -14,6 +14,8 @@ import com.example.habittracker.database.HabitDao;
 import com.example.habittracker.models.Habit;
 import com.example.habittracker.utils.QuoteApiService;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
@@ -87,11 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         tvStreak.setText(habit.getStreak() + " dni z rzędu");
         cb.setChecked(habit.isCompletedToday());
 
-        if (isDark) {
-            card.setBackgroundResource(R.drawable.bg_card_dark);
-            tvTitle.setTextColor(Color.parseColor("#F0F0F0"));
-            tvStreak.setTextColor(Color.parseColor("#9A9A9A"));
-        }
+
 
         cb.setOnClickListener(v -> {
             habitDao.toggleCompletion(habit.getId(), session.getUserId(), today);

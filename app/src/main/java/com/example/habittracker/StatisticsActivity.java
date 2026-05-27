@@ -12,6 +12,8 @@ import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.HabitDao;
 import com.example.habittracker.models.Habit;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,14 +29,13 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
         isDark = session.isDarkMode();
 
-        if (isDark) {
-            findViewById(R.id.statsRoot).setBackgroundColor(Color.parseColor("#111111"));
-        }
+
 
         loadStats();
         setupBottomNav();
@@ -69,11 +70,7 @@ public class StatisticsActivity extends AppCompatActivity {
             tvStreak.setText(habit.getStreak() + " dni z rzędu");
             cb.setChecked(habitDao.isCompletedOnDate(habit.getId(), today));
 
-            if (isDark) {
-                card.setBackgroundResource(R.drawable.bg_card_dark);
-                tvTitle.setTextColor(Color.parseColor("#F0F0F0"));
-                tvStreak.setTextColor(Color.parseColor("#9A9A9A"));
-            }
+
 
             final int hId = habit.getId();
             card.setOnClickListener(v -> {

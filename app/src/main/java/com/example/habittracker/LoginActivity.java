@@ -13,6 +13,7 @@ import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.UserDao;
 import com.example.habittracker.models.User;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         userDao = new UserDao(DatabaseHelper.getInstance(this));
         session = new SessionManager(this);

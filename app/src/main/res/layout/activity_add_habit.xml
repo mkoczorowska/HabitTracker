@@ -3,18 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/addHabitRoot"
-    android:background="@color/light_bg">
+    android:background="@color/light_bg"
+    android:tag="root">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:tag="root">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Habit Tracker"
+            android:tag="text_title"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/light_text_primary"
@@ -26,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nowy nawyk"
+            android:tag="text_secondary"
             android:textSize="16sp"
             android:textColor="@color/light_text_secondary"
             android:gravity="center"
@@ -35,12 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tytuł nawyku"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="6dp"/>
 
         <EditText
             android:id="@+id/etHabitTitle"
+            android:tag="input"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/bg_input"
@@ -56,12 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Opis (opcjonalnie)"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="6dp"/>
 
         <EditText
             android:id="@+id/etHabitDesc"
+            android:tag="input"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/bg_input"
@@ -79,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dni tygodnia"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="12dp"/>
@@ -151,6 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Zapisz nawyk"
+            android:tag="btn_primary"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:background="@drawable/bg_button"
@@ -162,6 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Anuluj"
+            android:tag="btn_outline"
             android:textColor="@color/light_text_primary"
             android:textSize="16sp"
             android:background="@drawable/bg_button_outline"

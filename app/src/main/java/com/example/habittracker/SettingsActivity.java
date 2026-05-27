@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import com.example.habittracker.utils.NotificationReceiver;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
 

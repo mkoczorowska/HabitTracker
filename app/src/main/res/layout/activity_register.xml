@@ -3,19 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/registerRoot"
-    android:background="@color/light_bg">
+    android:background="@color/light_bg"
+    android:tag="root">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="32dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:tag="root">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Habit Tracker"
+            android:tag="text_title"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/light_text_primary"
@@ -26,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zarejestruj się"
+            android:tag="text_secondary"
             android:textSize="16sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="40dp"/>
@@ -34,12 +38,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="6dp"/>
 
         <EditText
             android:id="@+id/etEmail"
+            android:tag="input"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/bg_input"
@@ -55,12 +61,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hasło"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="6dp"/>
 
         <EditText
             android:id="@+id/etPassword"
+            android:tag="input"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/bg_input"
@@ -76,12 +84,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Powtórz hasło"
+            android:tag="label"
             android:textSize="13sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="6dp"/>
 
         <EditText
             android:id="@+id/etRepeatPassword"
+            android:tag="input"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/bg_input"
@@ -98,6 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Zarejestruj się"
+            android:tag="btn_primary"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:background="@drawable/bg_button"
@@ -109,6 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Wróć"
+            android:tag="btn_outline"
             android:textColor="@color/light_text_primary"
             android:textSize="16sp"
             android:background="@drawable/bg_button_outline"

@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:background="@drawable/bg_bottom_nav"
     android:elevation="8dp"
-    android:paddingBottom="8dp">
+    android:paddingBottom="8dp"
+    android:tag="bottom_nav">
 
     <LinearLayout
         android:id="@+id/navStatistics"
@@ -21,12 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="📊"
+            android:tag="text_secondary"
             android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Statystyki"
+            android:tag="text_secondary"
             android:textSize="10sp"
             android:textColor="@color/light_text_secondary"/>
 
@@ -46,12 +49,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🏠"
+            android:tag="text_secondary"
             android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Główna"
+            android:tag="text_secondary"
             android:textSize="10sp"
             android:textColor="@color/light_text_secondary"/>
 
@@ -71,12 +76,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="⚙️"
+            android:tag="text_secondary"
             android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ustawienia"
+            android:tag="text_secondary"
             android:textSize="10sp"
             android:textColor="@color/light_text_secondary"/>
 

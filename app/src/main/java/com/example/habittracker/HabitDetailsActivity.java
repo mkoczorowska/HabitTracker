@@ -12,6 +12,8 @@ import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.HabitDao;
 import com.example.habittracker.models.Habit;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_details);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
         session = new SessionManager(this);

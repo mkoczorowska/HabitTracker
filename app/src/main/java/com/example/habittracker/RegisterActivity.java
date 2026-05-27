@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.UserDao;
 import com.example.habittracker.utils.SessionManager;
+import com.example.habittracker.utils.ThemeHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         userDao = new UserDao(DatabaseHelper.getInstance(this));
         session = new SessionManager(this);

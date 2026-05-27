@@ -5,12 +5,14 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:id="@+id/detailsRoot"
-    android:background="@color/light_bg">
+    android:background="@color/light_bg"
+    android:tag="root">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Habit Tracker"
+        android:tag="text_title"
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="@color/light_text_primary"
@@ -24,10 +26,12 @@
         android:orientation="vertical"
         android:background="@drawable/bg_card"
         android:padding="24dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:tag="card">
 
         <TextView
             android:id="@+id/tvHabitTitle"
+            android:tag="text_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22sp"
@@ -39,10 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/light_border"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:tag="divider"/>
 
         <TextView
             android:id="@+id/tvHabitDesc"
+            android:tag="text_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -58,17 +64,20 @@
         android:background="@drawable/bg_card"
         android:padding="24dp"
         android:layout_marginBottom="32dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:tag="card">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🔥"
+            android:tag="text_secondary"
             android:textSize="36sp"
             android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvStreakDays"
+            android:tag="text_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="32sp"
@@ -79,12 +88,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dni z rzędu"
+            android:tag="text_secondary"
             android:textSize="14sp"
             android:textColor="@color/light_text_secondary"
             android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvStreakStart"
+            android:tag="text_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
@@ -97,6 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:text="Usuń nawyk"
+        android:tag="btn_primary"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:background="@drawable/bg_button"
@@ -108,6 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:text="Wróć"
+        android:tag="btn_outline"
         android:textColor="@color/light_text_primary"
         android:textSize="16sp"
         android:background="@drawable/bg_button_outline"
