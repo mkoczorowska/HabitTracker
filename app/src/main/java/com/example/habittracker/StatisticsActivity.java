@@ -1,7 +1,6 @@
 package com.example.habittracker;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import com.example.habittracker.R;
 import android.view.View;
@@ -23,19 +22,15 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private HabitDao habitDao;
     private SessionManager session;
-    private boolean isDark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
-        isDark = session.isDarkMode();
-
-
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         loadStats();
         setupBottomNav();
@@ -50,7 +45,7 @@ public class StatisticsActivity extends AppCompatActivity {
         LinearLayout allContainer = findViewById(R.id.allHabitsContainer);
 
         if (!habits.isEmpty()) {
-            Habit top = habits.get(0); // sorted by streak DESC
+            Habit top = habits.get(0);
             tvTopName.setText(top.getTitle());
             tvTopStreak.setText("🔥 " + top.getStreak() + " dni z rzędu");
         } else {
@@ -69,8 +64,6 @@ public class StatisticsActivity extends AppCompatActivity {
             tvTitle.setText(habit.getTitle());
             tvStreak.setText(habit.getStreak() + " dni z rzędu");
             cb.setChecked(habitDao.isCompletedOnDate(habit.getId(), today));
-
-
 
             final int hId = habit.getId();
             card.setOnClickListener(v -> {

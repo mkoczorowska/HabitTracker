@@ -34,10 +34,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
         isDark = session.isDarkMode();
 
         habitsContainer = findViewById(R.id.habitsContainer);

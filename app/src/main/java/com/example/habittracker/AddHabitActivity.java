@@ -24,7 +24,7 @@ import java.util.Locale;
 public class AddHabitActivity extends AppCompatActivity {
 
     private EditText etTitle, etDesc;
-    private final boolean[] selectedDays = new boolean[7]; // Mon=0..Sun=6
+    private final boolean[] selectedDays = new boolean[7];
     private TextView[] dayViews;
     private HabitDao habitDao;
     private SessionManager session;
@@ -33,10 +33,10 @@ public class AddHabitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_habit);
-        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
-        habitDao = new HabitDao(DatabaseHelper.getInstance(this));
         session = new SessionManager(this);
+        habitDao = new HabitDao(DatabaseHelper.getInstance(this));
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         etTitle = findViewById(R.id.etHabitTitle);
         etDesc = findViewById(R.id.etHabitDesc);
@@ -79,7 +79,7 @@ public class AddHabitActivity extends AppCompatActivity {
 
         List<Integer> daysList = new ArrayList<>();
         for (int i = 0; i < selectedDays.length; i++) {
-            if (selectedDays[i]) daysList.add(i + 1); // 1=Mon..7=Sun
+            if (selectedDays[i]) daysList.add(i + 1);
         }
 
         if (daysList.isEmpty()) {

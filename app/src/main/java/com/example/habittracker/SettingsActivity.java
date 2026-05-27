@@ -25,9 +25,9 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         session = new SessionManager(this);
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         TextView tvEmail = findViewById(R.id.tvEmail);
         tvEmail.setText(session.getEmail());
@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         switchDark.setOnCheckedChangeListener((btn, checked) -> {
             session.setDarkMode(checked);
-            recreate(); // restart activity to apply theme
+            recreate();
         });
 
         switchNotifications.setOnCheckedChangeListener((btn, checked) -> {

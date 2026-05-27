@@ -25,10 +25,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
-        userDao = new UserDao(DatabaseHelper.getInstance(this));
         session = new SessionManager(this);
+        userDao = new UserDao(DatabaseHelper.getInstance(this));
+        ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -41,33 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString();
 
-        // Validation
-        if (TextUtils.isEmpty(email)) {
-            showError("Podaj adres email.");
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            showError("Podaj poprawny adres email.");
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            showError("Podaj hasło.");
-            return;
-        }
-        if (password.length() < 6) {
-            showError("Hasło musi mieć minimum 6 znaków.");
-            return;
-        }
+        if (TextUtils.isEmpty(email)) { showError("Podaj adres email."); return; }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { showError("Podaj poprawny adres email."); return; }
+        if (TextUtils.isEmpty(password)) { showError("Podaj hasło."); return; }
+        if (password.length() < 6) { showError("Hasło musi mieć minimum 6 znaków."); return; }
 
         User user = userDao.getUserByEmail(email);
-        if (user == null) {
-            showError("Nie znaleziono konta z tym adresem email.");
-            return;
-        }
-        if (!user.getPassword().equals(password)) {
-            showError("Nieprawidłowe hasło.");
-            return;
-        }
+        if (user == null) { showError("Nie znaleziono konta z tym adresem email."); return; }
+        if (!user.getPassword().equals(password)) { showError("Nieprawidłowe hasło."); return; }
 
         session.saveSession(user.getId(), user.getEmail());
         Intent intent = new Intent(this, HomeActivity.class);

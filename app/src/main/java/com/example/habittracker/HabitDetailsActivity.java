@@ -3,7 +3,6 @@ package com.example.habittracker;
 import android.graphics.Color;
 import android.os.Bundle;
 import com.example.habittracker.R;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
@@ -30,16 +29,15 @@ public class HabitDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_details);
+
+        session = new SessionManager(this);
+        habitDao = new HabitDao(DatabaseHelper.getInstance(this));
         ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
-        habitDao = new HabitDao(DatabaseHelper.getInstance(this));
-        session = new SessionManager(this);
         habitId = getIntent().getIntExtra("habitId", -1);
-
         if (habitId == -1) { finish(); return; }
 
         loadHabit();
-
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.btnDelete).setOnClickListener(v -> confirmDelete());
     }
@@ -58,7 +56,6 @@ public class HabitDetailsActivity extends AppCompatActivity {
                 ? habit.getDescription() : "Brak opisu.");
         tvStreakDays.setText(String.valueOf(habit.getStreak()));
 
-        // Calculate days since start
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Date created = sdf.parse(habit.getCreatedAt());
