@@ -5,120 +5,161 @@ import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 public class ThemeHelper {
 
+    // ── Light theme ──────────────────────────────────────────────
+    public static final int LIGHT_BG              = Color.parseColor("#F7F8FC");
+    public static final int LIGHT_SURFACE         = Color.parseColor("#FFFFFF");
+    public static final int LIGHT_BORDER          = Color.parseColor("#E2E5F0");
+    public static final int LIGHT_TEXT_PRIMARY    = Color.parseColor("#0F1128");
+    public static final int LIGHT_TEXT_SECONDARY  = Color.parseColor("#6B7196");
+    // Przycisk primary w light: gradient indigo → biały tekst ✓
+    public static final int LIGHT_BUTTON_BG       = Color.parseColor("#5C6BC0");
+    public static final int LIGHT_BUTTON_TEXT     = Color.parseColor("#FFFFFF");
+    public static final int LIGHT_BUTTON_OUTLINE_TEXT = Color.parseColor("#0F1128");
 
-    public static final int LIGHT_BG = Color.parseColor("#F5F5F5");
-    public static final int LIGHT_SURFACE = Color.parseColor("#FFFFFF");
-    public static final int LIGHT_BORDER = Color.parseColor("#D0D0D0");
-    public static final int LIGHT_TEXT_PRIMARY = Color.parseColor("#1A1A1A");
-    public static final int LIGHT_TEXT_SECONDARY = Color.parseColor("#6B6B6B");
-    public static final int LIGHT_BUTTON_BG = Color.parseColor("#3D3D3D");
-    public static final int LIGHT_BUTTON_TEXT = Color.parseColor("#FFFFFF");
-    public static final int LIGHT_BUTTON_OUTLINE_TEXT = Color.parseColor("#1A1A1A");
-
-
-    public static final int DARK_BG = Color.parseColor("#111111");
-    public static final int DARK_SURFACE = Color.parseColor("#1E1E1E");
-    public static final int DARK_BORDER = Color.parseColor("#3A3A3A");
-    public static final int DARK_TEXT_PRIMARY = Color.parseColor("#F0F0F0");
-    public static final int DARK_TEXT_SECONDARY = Color.parseColor("#9A9A9A");
-    public static final int DARK_BUTTON_BG = Color.parseColor("#E0E0E0");
-    public static final int DARK_BUTTON_TEXT = Color.parseColor("#111111");
-    public static final int DARK_BUTTON_OUTLINE_TEXT = Color.parseColor("#F0F0F0");
+    // ── Dark theme ───────────────────────────────────────────────
+    public static final int DARK_BG               = Color.parseColor("#0D0E1A");
+    public static final int DARK_SURFACE          = Color.parseColor("#161828");
+    public static final int DARK_BORDER           = Color.parseColor("#2A2D4A");
+    public static final int DARK_TEXT_PRIMARY     = Color.parseColor("#EDF0FF");
+    public static final int DARK_TEXT_SECONDARY   = Color.parseColor("#8C91B8");
+    // NAPRAWIONE: przycisk primary w dark → jaśniejszy indigo, BIAŁY tekst
+    public static final int DARK_BUTTON_BG        = Color.parseColor("#7986CB");
+    public static final int DARK_BUTTON_TEXT      = Color.parseColor("#FFFFFF");
+    public static final int DARK_BUTTON_OUTLINE_TEXT = Color.parseColor("#EDF0FF");
 
     public static void apply(Activity activity, View rootView, boolean dark) {
-
-        activity.getWindow().getDecorView().setBackgroundColor(dark ? DARK_BG : LIGHT_BG);
         applyToView(rootView, dark);
     }
 
     public static void applyToView(View view, boolean dark) {
         if (view == null) return;
 
-        int bg = dark ? DARK_BG : LIGHT_BG;
-        int surface = dark ? DARK_SURFACE : LIGHT_SURFACE;
-        int textPrimary = dark ? DARK_TEXT_PRIMARY : LIGHT_TEXT_PRIMARY;
+        int bg            = dark ? DARK_BG            : LIGHT_BG;
+        int surface       = dark ? DARK_SURFACE       : LIGHT_SURFACE;
+        int textPrimary   = dark ? DARK_TEXT_PRIMARY   : LIGHT_TEXT_PRIMARY;
         int textSecondary = dark ? DARK_TEXT_SECONDARY : LIGHT_TEXT_SECONDARY;
 
         String tag = view.getTag() != null ? view.getTag().toString() : "";
 
-        if (tag.equals("root") || tag.equals("scroll_root")) {
-            view.setBackgroundColor(bg);
-        } else if (tag.equals("card")) {
-            view.setBackgroundColor(surface);
-            // rysujemy border
-            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-            gd.setColor(surface);
-            gd.setCornerRadius(dpToPx(view.getContext(), 16));
-            gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
-            view.setBackground(gd);
-        } else if (tag.equals("bottom_nav")) {
-            int navBg = dark ? Color.parseColor("#1E1E1E") : Color.parseColor("#FFFFFF");
-            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-            gd.setColor(navBg);
-            gd.setCornerRadii(new float[]{dpToPx(view.getContext(), 20), dpToPx(view.getContext(), 20),
-                    dpToPx(view.getContext(), 20), dpToPx(view.getContext(), 20), 0, 0, 0, 0});
-            gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
-            view.setBackground(gd);
-        } else if (tag.equals("btn_primary")) {
-            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-            gd.setColor(dark ? DARK_BUTTON_BG : LIGHT_BUTTON_BG);
-            gd.setCornerRadius(dpToPx(view.getContext(), 12));
-            view.setBackground(gd);
-            if (view instanceof Button) {
-                ((Button) view).setTextColor(dark ? DARK_BUTTON_TEXT : LIGHT_BUTTON_TEXT);
+        switch (tag) {
+            case "root":
+            case "scroll_root":
+                view.setBackgroundColor(bg);
+                break;
+
+            case "card": {
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(surface);
+                gd.setCornerRadius(dpToPx(view.getContext(), 16));
+                gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
+                view.setBackground(gd);
+                break;
             }
-        } else if (tag.equals("btn_outline")) {
-            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-            gd.setColor(Color.TRANSPARENT);
-            gd.setCornerRadius(dpToPx(view.getContext(), 12));
-            gd.setStroke(dpToPx(view.getContext(), 2), dark ? DARK_TEXT_PRIMARY : LIGHT_TEXT_PRIMARY);
-            view.setBackground(gd);
-            if (view instanceof Button) {
-                ((Button) view).setTextColor(dark ? DARK_BUTTON_OUTLINE_TEXT : LIGHT_BUTTON_OUTLINE_TEXT);
+
+            case "bottom_nav": {
+                int navBg = dark ? Color.parseColor("#161828") : Color.parseColor("#FFFFFF");
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(navBg);
+                float r = dpToPx(view.getContext(), 20);
+                gd.setCornerRadii(new float[]{r, r, r, r, 0, 0, 0, 0});
+                gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
+                view.setBackground(gd);
+                break;
             }
-        } else if (tag.equals("input")) {
-            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-            gd.setColor(dark ? Color.parseColor("#2A2A2A") : Color.parseColor("#F5F5F5"));
-            gd.setCornerRadius(dpToPx(view.getContext(), 10));
-            gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
-            view.setBackground(gd);
-            if (view instanceof EditText) {
-                ((EditText) view).setTextColor(textPrimary);
-                ((EditText) view).setHintTextColor(dark ? Color.parseColor("#666666") : Color.parseColor("#AAAAAA"));
+
+            case "btn_primary": {
+                // NAPRAWIONE: indigo w light, jaśniejszy indigo w dark — oba z białym tekstem
+                int btnBg   = dark ? DARK_BUTTON_BG   : LIGHT_BUTTON_BG;
+                int btnText = dark ? DARK_BUTTON_TEXT  : LIGHT_BUTTON_TEXT;
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(btnBg);
+                gd.setCornerRadius(dpToPx(view.getContext(), 14));
+                view.setBackground(gd);
+                if (view instanceof Button) {
+                    ((Button) view).setTextColor(btnText);
+                }
+                break;
             }
-        } else if (tag.equals("divider")) {
-            view.setBackgroundColor(dark ? DARK_BORDER : LIGHT_BORDER);
+
+            case "btn_outline": {
+                int outlineColor = dark ? DARK_TEXT_PRIMARY : LIGHT_TEXT_PRIMARY;
+                int outlineText  = dark ? DARK_BUTTON_OUTLINE_TEXT : LIGHT_BUTTON_OUTLINE_TEXT;
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(Color.TRANSPARENT);
+                gd.setCornerRadius(dpToPx(view.getContext(), 14));
+                gd.setStroke(dpToPx(view.getContext(), 2), outlineColor);
+                view.setBackground(gd);
+                if (view instanceof Button) {
+                    ((Button) view).setTextColor(outlineText);
+                }
+                break;
+            }
+
+            case "btn_delete": {
+                // Czerwony outline button — zawsze czytelny
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(dark ? Color.parseColor("#2A0A0A") : Color.parseColor("#FFEBEE"));
+                gd.setCornerRadius(dpToPx(view.getContext(), 14));
+                gd.setStroke(dpToPx(view.getContext(), 2), Color.parseColor("#E53935"));
+                view.setBackground(gd);
+                if (view instanceof Button) {
+                    ((Button) view).setTextColor(Color.parseColor("#E53935"));
+                }
+                break;
+            }
+
+            case "input": {
+                int inputBg = dark ? Color.parseColor("#1E2035") : Color.parseColor("#F7F8FC");
+                android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+                gd.setColor(inputBg);
+                gd.setCornerRadius(dpToPx(view.getContext(), 12));
+                gd.setStroke(dpToPx(view.getContext(), 1), dark ? DARK_BORDER : LIGHT_BORDER);
+                view.setBackground(gd);
+                if (view instanceof EditText) {
+                    ((EditText) view).setTextColor(textPrimary);
+                    ((EditText) view).setHintTextColor(dark
+                            ? Color.parseColor("#4A4E6A")
+                            : Color.parseColor("#AAAAAA"));
+                }
+                break;
+            }
+
+            case "header":
+                // Gradient header — nie nadpisujemy tła, ma bg_header_gradient
+                break;
+
+            case "divider":
+                view.setBackgroundColor(dark ? DARK_BORDER : LIGHT_BORDER);
+                break;
         }
 
-
+        // Tekst (nie Button — Buttony obsługiwane przez tag btn_*)
         if (view instanceof TextView && !(view instanceof Button)) {
-            String tvTag = tag;
-            if (tvTag.equals("text_primary") || tvTag.isEmpty()) {
+            if (tag.equals("text_primary") || tag.isEmpty()) {
                 ((TextView) view).setTextColor(textPrimary);
-            } else if (tvTag.equals("text_secondary") || tvTag.equals("label")) {
+            } else if (tag.equals("text_secondary") || tag.equals("label")) {
                 ((TextView) view).setTextColor(textSecondary);
-            } else if (tvTag.equals("text_title")) {
+            } else if (tag.equals("text_title")) {
                 ((TextView) view).setTextColor(textPrimary);
             }
+            // tag "header" i inne specjalne — nie nadpisujemy koloru
         }
 
+        // Switch
         if (view instanceof Switch) {
-            ((Switch) view).setThumbTintList(android.content.res.ColorStateList.valueOf(
-                    dark ? Color.parseColor("#E0E0E0") : Color.parseColor("#5A5A5A")));
-            ((Switch) view).setTrackTintList(android.content.res.ColorStateList.valueOf(
-                    dark ? Color.parseColor("#444444") : Color.parseColor("#CCCCCC")));
+            int thumbColor = dark ? Color.parseColor("#7986CB") : Color.parseColor("#5C6BC0");
+            int trackColor = dark ? Color.parseColor("#2A2D4A") : Color.parseColor("#C5CAE9");
+            ((Switch) view).setThumbTintList(android.content.res.ColorStateList.valueOf(thumbColor));
+            ((Switch) view).setTrackTintList(android.content.res.ColorStateList.valueOf(trackColor));
         }
 
-
+        // Rekurencja na dzieci
         if (view instanceof ViewGroup) {
             ViewGroup group = (ViewGroup) view;
             for (int i = 0; i < group.getChildCount(); i++) {

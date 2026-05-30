@@ -2,8 +2,9 @@ package com.example.habittracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.example.habittracker.R;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class StatisticsActivity extends AppCompatActivity {
+public class StatisticsActivity extends BaseActivity {
 
     private HabitDao habitDao;
     private SessionManager session;
@@ -31,6 +32,11 @@ public class StatisticsActivity extends AppCompatActivity {
         session = new SessionManager(this);
         habitDao = new HabitDao(DatabaseHelper.getInstance(this));
         ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
+
+        // Animacja nagłówka
+        View header = findViewById(R.id.statsTop);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        header.startAnimation(fadeIn);
 
         loadStats();
         setupBottomNav();
@@ -55,7 +61,9 @@ public class StatisticsActivity extends AppCompatActivity {
 
         allContainer.removeAllViews();
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        for (Habit habit : habits) {
+
+        for (int i = 0; i < habits.size(); i++) {
+            Habit habit = habits.get(i);
             View card = getLayoutInflater().inflate(R.layout.item_habit, allContainer, false);
             TextView tvTitle = card.findViewById(R.id.tvHabitTitle);
             TextView tvStreak = card.findViewById(R.id.tvStreak);
@@ -64,6 +72,13 @@ public class StatisticsActivity extends AppCompatActivity {
             tvTitle.setText(habit.getTitle());
             tvStreak.setText(habit.getStreak() + " dni z rzędu");
             cb.setChecked(habitDao.isCompletedOnDate(habit.getId(), today));
+
+            ThemeHelper.applyToView(card, session.isDarkMode());
+
+            // Staggered slide-up
+            Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+            slideUp.setStartOffset(i * 60L);
+            card.startAnimation(slideUp);
 
             final int hId = habit.getId();
             card.setOnClickListener(v -> {
@@ -80,13 +95,11 @@ public class StatisticsActivity extends AppCompatActivity {
         View nav = findViewById(R.id.bottomNavStats);
         nav.findViewById(R.id.navHome).setOnClickListener(v -> {
             startActivity(new Intent(this, HomeActivity.class));
-            overridePendingTransition(0, 0);
             finish();
         });
-        nav.findViewById(R.id.navStatistics).setOnClickListener(v -> { /* already here */ });
+        nav.findViewById(R.id.navStatistics).setOnClickListener(v -> { /* już tu */ });
         nav.findViewById(R.id.navSettings).setOnClickListener(v -> {
             startActivity(new Intent(this, SettingsActivity.class));
-            overridePendingTransition(0, 0);
             finish();
         });
     }

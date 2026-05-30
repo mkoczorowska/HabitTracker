@@ -3,61 +3,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/homeRoot"
-    android:background="@color/light_bg"
-    android:tag="root" >
+    android:background="?android:attr/colorBackground"
+    android:tag="root">
 
+    <!-- Gradient header -->
     <LinearLayout
-        android:id="@+id/topSection"
+        android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingBottom="0dp">
+        android:background="@drawable/bg_header_gradient"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="32dp"
+        android:tag="header">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Habit Tracker"
-            android:tag="text_title"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="@color/light_text_primary"
-            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="#C5CAE9"
+            android:letterSpacing="0.1"
             android:layout_marginBottom="4dp"/>
 
         <TextView
-            android:id="@+id/tvMotivationalQuote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:tag="text_secondary"
-            android:textSize="11sp"
-            android:textColor="@color/light_text_secondary"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
-            android:maxLines="2"
-            android:ellipsize="end"/>
-
-        <TextView
+            android:id="@+id/tvGreeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dzisiejsze nawyki"
-            android:tag="text_title"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@color/light_text_primary"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp"/>
+
+        <!-- Quote card inside header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_quote_card"
+            android:padding="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💬"
+                android:textSize="16sp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/tvMotivationalQuote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ładowanie cytatu..."
+                android:textSize="12sp"
+                android:textColor="#E8EAF6"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <!-- Progress bar widget -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvProgressLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Postęp dziś: 0/0"
+                android:textSize="12sp"
+                android:textColor="#C5CAE9"/>
+
+            <TextView
+                android:id="@+id/tvProgressPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_progress_track">
+
+            <View
+                android:id="@+id/progressFill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_progress_fill"/>
+        </FrameLayout>
 
     </LinearLayout>
 
+    <!-- Habits scroll -->
     <ScrollView
         android:id="@+id/scrollHabits"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topSection"
+        android:layout_below="@id/headerSection"
         android:layout_above="@id/bottomNav"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:clipToPadding="false">
 
@@ -69,29 +129,57 @@
 
     </ScrollView>
 
-    <TextView
+    <!-- Empty state -->
+    <LinearLayout
         android:id="@+id/tvEmptyState"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Brak nawyków na dziś.\nDodaj swój pierwszy nawyk!"
-        android:tag="text_secondary"
-        android:textSize="14sp"
-        android:textColor="@color/light_text_secondary"
+        android:orientation="vertical"
         android:gravity="center"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        android:paddingBottom="80dp"/>
+        android:paddingBottom="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌱"
+            android:textSize="48sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brak nawyków na dziś"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_text_primary"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"
+            android:tag="text_primary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodaj pierwszy nawyk przyciskiem +"
+            android:textSize="13sp"
+            android:textColor="@color/light_text_secondary"
+            android:gravity="center"
+            android:tag="text_secondary"/>
+
+    </LinearLayout>
 
     <!-- FAB -->
     <FrameLayout
         android:id="@+id/fabAdd"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_above="@id/bottomNav"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/bg_fab"
-        android:elevation="8dp"
+        android:elevation="12dp"
         android:clickable="true"
         android:focusable="true">
 
@@ -99,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="+"
-            android:textSize="28sp"
+            android:textSize="30sp"
             android:textColor="#FFFFFF"
             android:gravity="center"
             android:paddingBottom="2dp"/>

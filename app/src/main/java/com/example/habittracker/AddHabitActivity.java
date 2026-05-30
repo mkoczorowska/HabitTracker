@@ -1,10 +1,10 @@
 package com.example.habittracker;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import com.example.habittracker.R;
 import android.text.TextUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AddHabitActivity extends AppCompatActivity {
+public class AddHabitActivity extends BaseActivity {
 
     private EditText etTitle, etDesc;
     private final boolean[] selectedDays = new boolean[7];
@@ -50,21 +50,44 @@ public class AddHabitActivity extends AppCompatActivity {
 
         for (int i = 0; i < dayViews.length; i++) {
             final int idx = i;
+            // Staggered wejście day chips
+            Animation scaleIn = AnimationUtils.loadAnimation(this, R.anim.scale_in);
+            scaleIn.setStartOffset(100 + idx * 40L);
+            dayViews[i].startAnimation(scaleIn);
+
             dayViews[i].setOnClickListener(v -> toggleDay(idx));
         }
 
-        findViewById(R.id.btnSave).setOnClickListener(v -> saveHabit());
+        // Animacja przycisku save
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp.setStartOffset(400);
+        findViewById(R.id.btnSave).startAnimation(slideUp);
+
+        findViewById(R.id.btnSave).setOnClickListener(v -> {
+            v.animate().scaleX(0.96f).scaleY(0.96f).setDuration(80)
+                    .withEndAction(() -> v.animate().scaleX(1f).scaleY(1f).setDuration(100)
+                            .withEndAction(this::saveHabit).start())
+                    .start();
+        });
+
         findViewById(R.id.btnCancel).setOnClickListener(v -> finish());
     }
 
     private void toggleDay(int idx) {
         selectedDays[idx] = !selectedDays[idx];
+
+        // Bounce animacja przy wyborze
+        Animation bounce = AnimationUtils.loadAnimation(this, R.anim.scale_in);
+        dayViews[idx].startAnimation(bounce);
+
         if (selectedDays[idx]) {
             dayViews[idx].setBackgroundResource(R.drawable.bg_day_selected);
             dayViews[idx].setTextColor(Color.WHITE);
         } else {
             dayViews[idx].setBackgroundResource(R.drawable.bg_day_unselected);
-            dayViews[idx].setTextColor(Color.parseColor("#3D3D3D"));
+            dayViews[idx].setTextColor(session.isDarkMode()
+                    ? Color.parseColor("#9A9A9A")
+                    : Color.parseColor("#6B7196"));
         }
     }
 
@@ -100,7 +123,7 @@ public class AddHabitActivity extends AppCompatActivity {
         if (id == -1) {
             Toast.makeText(this, "Błąd podczas zapisywania nawyku.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Nawyk dodany!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "✓ Nawyk dodany!", Toast.LENGTH_SHORT).show();
             finish();
         }
     }

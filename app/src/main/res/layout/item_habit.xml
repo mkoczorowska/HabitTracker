@@ -11,6 +11,15 @@
     android:focusable="true"
     android:tag="card">
 
+    <!-- Color accent bar -->
+    <View
+        android:id="@+id/accentBar"
+        android:layout_width="4dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_accent_bar"
+        android:layout_marginEnd="14dp"/>
+
+    <!-- Content -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,37 +34,44 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/light_text_primary"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="6dp"/>
 
+        <!-- Streak badge -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_streak_badge"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🔥"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_marginEnd="4dp"/>
 
             <TextView
                 android:id="@+id/tvStreak"
-                android:tag="text_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/light_text_secondary"/>
+                android:textSize="11sp"
+                android:textColor="#E65100"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <!-- Custom check circle -->
     <CheckBox
         android:id="@+id/cbDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:buttonTint="@color/check_color"
         android:clickable="false"
         android:focusable="false"/>
