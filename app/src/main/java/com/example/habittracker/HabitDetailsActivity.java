@@ -1,12 +1,11 @@
 package com.example.habittracker;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import com.example.habittracker.R;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.HabitDao;
 import com.example.habittracker.models.Habit;
@@ -19,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class HabitDetailsActivity extends AppCompatActivity {
+public class HabitDetailsActivity extends BaseActivity {
 
     private HabitDao habitDao;
     private SessionManager session;
@@ -38,6 +37,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
         if (habitId == -1) { finish(); return; }
 
         loadHabit();
+
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.btnDelete).setOnClickListener(v -> confirmDelete());
     }
@@ -53,7 +53,8 @@ public class HabitDetailsActivity extends AppCompatActivity {
 
         tvTitle.setText(habit.getTitle());
         tvDesc.setText(habit.getDescription() != null && !habit.getDescription().isEmpty()
-                ? habit.getDescription() : "Brak opisu.");
+                ? habit.getDescription()
+                : "Brak opisu.");
         tvStreakDays.setText(String.valueOf(habit.getStreak()));
 
         try {
@@ -62,19 +63,20 @@ public class HabitDetailsActivity extends AppCompatActivity {
             Date now = new Date();
             long diff = now.getTime() - created.getTime();
             long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-            tvStreakStart.setText("Śledzony od " + days + " dni (od " + habit.getCreatedAt() + ")");
+            tvStreakStart.setText("Śledzony od " + days + " dni · od " + habit.getCreatedAt());
         } catch (ParseException e) {
             tvStreakStart.setText("Śledzony od " + habit.getCreatedAt());
         }
 
-        if (session.isDarkMode()) {
-            applyDark(tvTitle, tvDesc, tvStreakDays, tvStreakStart);
-        }
-    }
+        // Animacja liczby streak – scale bounce
+        Animation bounce = AnimationUtils.loadAnimation(this, R.anim.scale_in);
+        bounce.setStartOffset(200);
+        tvStreakDays.startAnimation(bounce);
 
-    private void applyDark(TextView... views) {
-        findViewById(R.id.detailsRoot).setBackgroundColor(Color.parseColor("#111111"));
-        for (TextView tv : views) tv.setTextColor(Color.parseColor("#F0F0F0"));
+        // Animacja slide_up kart
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp.setStartOffset(80);
+        tvTitle.getRootView().startAnimation(slideUp);
     }
 
     private void confirmDelete() {

@@ -2,18 +2,19 @@ package com.example.habittracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.example.habittracker.R;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.UserDao;
 import com.example.habittracker.utils.SessionManager;
 import com.example.habittracker.utils.ThemeHelper;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     private EditText etEmail, etPassword, etRepeatPassword;
     private UserDao userDao;
@@ -32,12 +33,32 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         etRepeatPassword = findViewById(R.id.etRepeatPassword);
 
-        findViewById(R.id.btnRegister).setOnClickListener(v -> attemptRegister());
+        // Staggered animacja pól
+        int[] offsets = {80, 140, 200};
+        EditText[] fields = {etEmail, etPassword, etRepeatPassword};
+        for (int i = 0; i < fields.length; i++) {
+            Animation a = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+            a.setStartOffset(offsets[i]);
+            fields[i].startAnimation(a);
+        }
+
+        Button btnRegister = findViewById(R.id.btnRegister);
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp.setStartOffset(260);
+        btnRegister.startAnimation(slideUp);
+
+        btnRegister.setOnClickListener(v -> {
+            v.animate().scaleX(0.96f).scaleY(0.96f).setDuration(80)
+                    .withEndAction(() -> v.animate().scaleX(1f).scaleY(1f).setDuration(100)
+                            .withEndAction(this::attemptRegister).start())
+                    .start();
+        });
+
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
     }
 
     private void attemptRegister() {
-        String email = etEmail.getText().toString().trim();
+        String email = etEmail.getText().toString().trim().toLowerCase();
         String password = etPassword.getText().toString();
         String repeatPassword = etRepeatPassword.getText().toString();
 

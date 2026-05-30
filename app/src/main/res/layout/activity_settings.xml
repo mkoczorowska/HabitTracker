@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/settingsRoot"
-    android:background="@color/light_bg"
+    android:background="?android:attr/colorBackground"
     android:tag="root">
 
     <ScrollView
@@ -14,158 +14,189 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Habit Tracker"
-                android:tag="text_title"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="@color/light_text_primary"
-                android:gravity="center"
-                android:layout_marginBottom="32dp"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="USTAWIENIA"
-                android:tag="label"
-                android:textSize="11sp"
-                android:textColor="@color/light_text_secondary"
-                android:letterSpacing="0.15"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- Account card -->
+            <!-- Gradient header with avatar -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_card"
-                android:padding="20dp"
-                android:layout_marginBottom="16dp"
-                android:tag="card">
+                android:gravity="center"
+                android:background="@drawable/bg_header_gradient"
+                android:paddingTop="24dp"
+                android:paddingBottom="28dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Konto"
-                    android:tag="label"
-                    android:textSize="11sp"
-                    android:textColor="@color/light_text_secondary"
-                    android:letterSpacing="0.1"
-                    android:layout_marginBottom="8dp"/>
+                <!-- Avatar circle -->
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/tvAvatarLetter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="?"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/tvEmail"
-                    android:tag="text_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/light_text_primary"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:text="Wyloguj"
-                android:tag="btn_primary"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:background="@drawable/bg_button"
-                android:stateListAnimator="@null"
-                android:layout_marginBottom="24dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PERSONALIZACJA"
-                android:tag="label"
-                android:textSize="11sp"
-                android:textColor="@color/light_text_secondary"
-                android:letterSpacing="0.15"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- Dark mode card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:tag="card"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_card"
-                android:padding="20dp"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Motyw ciemny"
-                    android:tag="text_primary"
-                    android:textSize="15sp"
-                    android:textColor="@color/light_text_primary"/>
-
-                <Switch
-                    android:id="@+id/switchDarkMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:thumbTint="@color/check_color"
-                    android:trackTint="#CCCCCC"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginBottom="4dp"
+                    android:tag="text_primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ustawienia"
+                    android:textSize="11sp"
+                    android:textColor="#C5CAE9"/>
 
             </LinearLayout>
 
-            <!-- Notifications card -->
+            <!-- Settings body -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_card"
+                android:orientation="vertical"
                 android:padding="20dp"
-                android:layout_marginBottom="32dp"
-                android:gravity="center_vertical"
-                android:tag="card">
+                android:paddingTop="24dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <!-- Section: Konto -->
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="KONTO"
+                    android:tag="label"
+                    android:textSize="10sp"
+                    android:textColor="@color/light_text_secondary"
+                    android:letterSpacing="0.12"
+                    android:layout_marginBottom="10dp"/>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Wyloguj się"
+                    android:tag="btn_primary"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_button"
+                    android:stateListAnimator="@null"
+                    android:layout_marginBottom="24dp"/>
+
+                <!-- Section: Personalizacja -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PERSONALIZACJA"
+                    android:tag="label"
+                    android:textSize="10sp"
+                    android:textColor="@color/light_text_secondary"
+                    android:letterSpacing="0.12"
+                    android:layout_marginBottom="10dp"/>
+
+                <!-- Dark mode toggle card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_card"
+                    android:padding="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:tag="card">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Włącz powiadomienia"
+                        android:text="🌙"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="14dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tryb ciemny"
                         android:tag="text_primary"
-                        android:textSize="15sp"
-                        android:textColor="@color/light_text_primary"
-                        android:layout_marginBottom="2dp"/>
+                        android:textSize="14sp"
+                        android:textColor="@color/light_text_primary"/>
 
-                    <TextView
+                    <Switch
+                        android:id="@+id/switchDarkMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Codzienny reminder o 8:00"
-                        android:tag="text_secondary"
-                        android:textSize="11sp"
-                        android:textColor="@color/light_text_secondary"/>
+                        android:thumbTint="@color/check_color"
+                        android:trackTint="#CCCCCC"/>
 
                 </LinearLayout>
 
-                <Switch
-                    android:id="@+id/switchNotifications"
-                    android:layout_width="wrap_content"
+                <!-- Notifications toggle card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:thumbTint="@color/check_color"
-                    android:trackTint="#CCCCCC"/>
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_card"
+                    android:padding="18dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center_vertical"
+                    android:tag="card">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔔"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="14dp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Powiadomienia"
+                            android:tag="text_primary"
+                            android:textSize="14sp"
+                            android:textColor="@color/light_text_primary"
+                            android:layout_marginBottom="2dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Codzienny reminder o 8:00"
+                            android:tag="text_secondary"
+                            android:textSize="11sp"
+                            android:textColor="@color/light_text_secondary"/>
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/switchNotifications"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:thumbTint="@color/check_color"
+                        android:trackTint="#CCCCCC"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

@@ -2,20 +2,20 @@ package com.example.habittracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.example.habittracker.R;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.UserDao;
 import com.example.habittracker.models.User;
 import com.example.habittracker.utils.SessionManager;
 import com.example.habittracker.utils.ThemeHelper;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private EditText etEmail, etPassword;
     private UserDao userDao;
@@ -33,12 +33,31 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
-        findViewById(R.id.btnLogin).setOnClickListener(v -> attemptLogin());
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        // Animacja formularza
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp.setStartOffset(100);
+        etEmail.startAnimation(slideUp);
+        etPassword.startAnimation(slideUp);
+
+        Button btnLogin = findViewById(R.id.btnLogin);
+        Button btnBack = findViewById(R.id.btnBack);
+
+        Animation slideUp2 = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp2.setStartOffset(200);
+        btnLogin.startAnimation(slideUp2);
+
+        btnLogin.setOnClickListener(v -> {
+            v.animate().scaleX(0.96f).scaleY(0.96f).setDuration(80)
+                    .withEndAction(() -> v.animate().scaleX(1f).scaleY(1f).setDuration(100)
+                            .withEndAction(this::attemptLogin).start())
+                    .start();
+        });
+
+        btnBack.setOnClickListener(v -> finish());
     }
 
     private void attemptLogin() {
-        String email = etEmail.getText().toString().trim();
+        String email = etEmail.getText().toString().trim().toLowerCase();
         String password = etPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) { showError("Podaj adres email."); return; }

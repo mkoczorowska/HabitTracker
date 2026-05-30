@@ -2,38 +2,58 @@ package com.example.habittracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.example.habittracker.R;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import com.example.habittracker.database.DatabaseHelper;
+import com.example.habittracker.database.UserDao;
 import com.example.habittracker.utils.SessionManager;
 import com.example.habittracker.utils.ThemeHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // BaseActivity.onCreate ustawia motyw i wywołuje super — nie rób tego ponownie
         super.onCreate(savedInstanceState);
 
         SessionManager session = new SessionManager(this);
+
         if (session.isLoggedIn()) {
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
-            return;
+            UserDao userDao = new UserDao(DatabaseHelper.getInstance(this));
+            boolean userExists = userDao.getUserByEmail(session.getEmail()) != null;
+            if (userExists) {
+                startActivity(new Intent(this, HomeActivity.class));
+                finish();
+                return;
+            } else {
+                session.clearSession();
+            }
         }
 
-        applyTheme(session.isDarkMode());
         setContentView(R.layout.activity_main);
         ThemeHelper.apply(this, findViewById(android.R.id.content), session.isDarkMode());
 
-        findViewById(R.id.btnLogin).setOnClickListener(v ->
-                startActivity(new Intent(this, LoginActivity.class)));
+        View root = findViewById(R.id.mainRoot);
+        root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
-        findViewById(R.id.btnRegister).setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterActivity.class)));
-    }
+        View btnLogin = findViewById(R.id.btnLogin);
+        View btnRegister = findViewById(R.id.btnRegister);
 
-    private void applyTheme(boolean dark) {
-        if (dark) {
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.dark_bg));
-        }
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp.setStartOffset(150);
+        btnLogin.startAnimation(slideUp);
+
+        Animation slideUp2 = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        slideUp2.setStartOffset(220);
+        btnRegister.startAnimation(slideUp2);
+
+        btnLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+        });
+
+        btnRegister.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterActivity.class));
+        });
     }
 }

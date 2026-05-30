@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.HabitTracker" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">#3D3D3D</item>
-        <item name="colorPrimaryVariant">#1A1A1A</item>
+        <item name="colorPrimary">#5C6BC0</item>
+        <item name="colorPrimaryVariant">#3949AB</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorSurface">#FFFFFF</item>
-        <item name="colorOnSurface">#1A1A1A</item>
+        <item name="colorOnSurface">#0F1128</item>
         <item name="android:windowBackground">@color/light_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <!-- Wyłącz animacje przejść — eliminuje czarny ekran między ekranami -->
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
     <style name="Theme.HabitTracker.Dark" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">#C8C8C8</item>
-        <item name="colorPrimaryVariant">#F0F0F0</item>
-        <item name="colorOnPrimary">#111111</item>
-        <item name="colorSurface">#1E1E1E</item>
-        <item name="colorOnSurface">#F0F0F0</item>
+        <item name="colorPrimary">#7986CB</item>
+        <item name="colorPrimaryVariant">#5C6BC0</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#161828</item>
+        <item name="colorOnSurface">#EDF0FF</item>
         <item name="android:windowBackground">@color/dark_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="Theme.HabitTracker.Splash" parent="Theme.HabitTracker">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 </resources>

@@ -3,78 +3,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/statsRoot"
-    android:background="@color/light_bg"
+    android:background="?android:attr/colorBackground"
     android:tag="root">
 
     <LinearLayout
         android:id="@+id/statsTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingBottom="0dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Habit Tracker"
-            android:tag="text_title"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="@color/light_text_primary"
-            android:gravity="center"
-            android:layout_marginBottom="24dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TWÓJ NAJDŁUŻSZY NAWYK"
-            android:tag="label"
-            android:textSize="12sp"
-            android:textColor="@color/light_text_secondary"
-            android:letterSpacing="0.1"
-            android:layout_marginBottom="8dp"/>
-
+        <!-- Gradient header -->
         <LinearLayout
-            android:id="@+id/topHabitCard"
-            android:tag="card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="20dp"
-            android:layout_marginBottom="24dp">
+            android:background="@drawable/bg_header_gradient"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="28dp">
 
             <TextView
-                android:id="@+id/tvTopHabitName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Brak nawyków"
-                android:tag="text_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/light_text_primary"
+                android:text="Habit Tracker"
+                android:textSize="11sp"
+                android:textColor="#C5CAE9"
+                android:letterSpacing="0.1"
                 android:layout_marginBottom="4dp"/>
 
             <TextView
-                android:id="@+id/tvTopHabitStreak"
-                android:tag="text_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="@color/light_text_secondary"/>
+                android:text="Statystyki"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Top habit summary card in header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_quote_card"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏆  NAJDŁUŻSZA SERIA"
+                    android:textSize="10sp"
+                    android:textColor="#C5CAE9"
+                    android:letterSpacing="0.1"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvTopHabitName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brak nawyków"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTopHabitStreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#C5CAE9"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <!-- Section label -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TWOJE WSZYSTKIE NAWYKI"
+            android:text="WSZYSTKIE NAWYKI"
             android:tag="label"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/light_text_secondary"
-            android:letterSpacing="0.1"
-            android:layout_marginBottom="12dp"/>
+            android:letterSpacing="0.12"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"/>
 
     </LinearLayout>
 
@@ -83,8 +100,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/statsTop"
         android:layout_above="@id/bottomNavStats"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="8dp"
         android:clipToPadding="false">
 
