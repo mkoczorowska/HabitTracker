@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.UserDao;
 import com.example.habittracker.models.User;
@@ -58,7 +57,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void attemptLogin() {
-        String email = etEmail.getText().toString().trim();
+        String email = etEmail.getText().toString().trim().toLowerCase();
         String password = etPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) { showError("Podaj adres email."); return; }

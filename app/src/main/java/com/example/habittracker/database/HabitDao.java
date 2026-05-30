@@ -130,7 +130,7 @@ public class HabitDao {
                 String prevDate = today;
                 while (cursor.moveToNext()) {
                     String d = cursor.getString(0);
-                    cal.setTime(new java.util.Date());
+
                     try {
                         java.util.Date prev = sdf.parse(prevDate);
                         java.util.Date curr = sdf.parse(d);

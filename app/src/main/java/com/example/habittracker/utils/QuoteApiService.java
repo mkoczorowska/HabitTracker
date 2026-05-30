@@ -18,8 +18,6 @@ public class QuoteApiService {
         void onError();
     }
 
-    // NAPRAWIONE: quotable.io nie działa od 2023 — używamy api-ninjas (działa bez klucza dla podstawowego endpointu)
-    // Fallback: jeśli API nie odpowie, pokazujemy jeden z lokalnych cytatów
     private static final String[] FALLBACK_QUOTES = {
             "Małe kroki każdego dnia prowadzą do wielkich celów.|Anonimowy",
             "Dyscyplina to most między celami a osiągnięciami.|Jim Rohn",
@@ -37,7 +35,7 @@ public class QuoteApiService {
             .build();
 
     public static void fetchMotivationalQuote(QuoteCallback callback) {
-        // Próbujemy zenquotes.io — darmowe, bez klucza, aktywne
+
         Request request = new Request.Builder()
                 .url("https://zenquotes.io/api/random")
                 .header("User-Agent", "HabitTrackerApp/1.0")

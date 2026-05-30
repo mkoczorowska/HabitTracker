@@ -7,7 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.habittracker.database.DatabaseHelper;
 import com.example.habittracker.database.HabitDao;
 import com.example.habittracker.models.Habit;
@@ -72,6 +72,8 @@ public class StatisticsActivity extends BaseActivity {
             tvTitle.setText(habit.getTitle());
             tvStreak.setText(habit.getStreak() + " dni z rzędu");
             cb.setChecked(habitDao.isCompletedOnDate(habit.getId(), today));
+            cb.setEnabled(false);
+            cb.setClickable(false);
 
             ThemeHelper.applyToView(card, session.isDarkMode());
 
